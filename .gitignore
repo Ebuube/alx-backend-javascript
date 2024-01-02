@@ -1,0 +1,5 @@
+# Ignore cache
+.cache/
+
+# Ignore modules - imported. Run `npm install` to install modules
+node_modules/
