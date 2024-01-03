@@ -5,10 +5,10 @@ export default function handleResponseFromAPI(promise) {
       return { status: 200, body: 'Success' };
     })
     // eslint-disable-next-line arrow-body-style
-    .catch((error) => {
-      return Error(error);
+    .catch(() => {
+      return Error();
     })
-    .then(() => {
+    .finally(() => {
       console.log('Got a response from the API');
     });
 }
