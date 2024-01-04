@@ -3,3 +3,6 @@
 
 # Ignore modules - imported. Run `npm install` to install modules
 node_modules/
+
+# Python cache
+__pycache__/
