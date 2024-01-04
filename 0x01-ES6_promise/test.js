@@ -1,12 +1,12 @@
-const p = new Promise((resolve, reject) => {
-	resolve({
-		firstName: 'Ebube',
-		lastName: 'Onwuta',
-	});
-});
+import handleProfileSignup from './6-final-user';
 
-p.then((result) => {
-	// console.log(result);
-	console.log(result.status);
-	console.log(result.value);
+test("handleProfileSignup returns the right array", async () => {
+	const queue = await handleProfileSignup('John', 'Doe', 'Gerald.jpg');
+	expect(queue).toEqual([
+		{
+			status: 'fulfilled',
+			value: { firstName: 'John', lastName: 'Doe' }
+		},
+		{ status: 'rejected', value: 'Error: Gerald.jpg cannot be processed' }
+	]);
 });
