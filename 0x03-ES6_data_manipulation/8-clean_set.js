@@ -5,7 +5,12 @@ export default function cleanSet(set, startString) {
   }
 
   const filtered = Array.from(set)
-    .filter((element) => element.startsWith(startString))
+    .filter((element) => {
+      if (typeof element !== 'string') {
+        return false;
+      }
+      return element.startsWith(startString);
+    })
     .map((element) => element.replace(startString, ''))
     .reduce((sum, element) => sum.concat('-', element));
   return filtered;
