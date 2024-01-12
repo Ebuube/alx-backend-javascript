@@ -25,6 +25,7 @@ export interface Directors extends Teacher {
   numberOfReports: number;
 }
 
+/*
 // Example
 const director1: Directors = {
     firstName: 'John',
@@ -34,3 +35,26 @@ const director1: Directors = {
     numberOfReports: 17
 };
 console.log(director1);
+*/
+
+
+// Task 3: Printing teachers
+export interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+export const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName[0]}. ${lastName}`;
+}
+
+/*
+// Example
+const teacher1 : Teacher = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullTimeEmployee: false,
+  location: 'London',
+  contract: false
+}
+
+console.log(printTeacher(teacher1.firstName, teacher1.lastName));
+*/
