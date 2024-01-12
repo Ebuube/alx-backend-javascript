@@ -25,22 +25,29 @@ const studentsList: Array<Student> = [student1, student2];
 
 // Rendering a table
 
-function renderTable () {
-  const tableBody = document.querySelector('#studentTable tbody');
+function renderTable (students: Array<Student>) {
+  const table = document.createElement('table');
+  table.border = '1'; // border for table
+  const headerRow = document.createElement('tr');
 
-  // Clear existing rows
-  tableBody.innerHTML = '';
+  headerRow.appendChild(document.createElement('th')).textContent = 'First Name';
+  headerRow.appendChild(document.createElement('th')).textContent = 'Location';
+  table.appendChild(headerRow);
 
   // Append a new row for each student in the array
-  studentsList.forEach(student => {
-    const row = tableBody.insertRow();
+  students.forEach(student => {
+    const row = document.createElement('tr');
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
 
     // Set cell values
     cell1.textContent = student.firstName;
     cell2.textContent = student.lastName;
+
+    table.appendChild(row);
   });
+
+  document.body.appendChild(table);
 }
 
-renderTable();
+renderTable(studentsList);
