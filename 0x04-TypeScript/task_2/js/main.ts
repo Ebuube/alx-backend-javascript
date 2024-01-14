@@ -44,7 +44,7 @@ export const Teacher = class Teacher implements TeacherInterface {
 }
 
 // Functions
-export function createEmployee(salary: number | string) {
+export function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
   if (typeof salary === 'number' && salary < 500) {
     return new Teacher();
   } else {
