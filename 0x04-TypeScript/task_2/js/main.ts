@@ -58,3 +58,25 @@ console.log(createEmployee(200));
 console.log(createEmployee(1000));
 console.log(createEmployee('$500'));
 */
+
+
+
+// Task 6: Creating functions specific to employees
+export function isDirector (employee: DirectorInterface | TeacherInterface): employee is DirectorInterface {
+  // A type predicate
+    return employee instanceof Director;
+}
+
+export function executeWork(employee: any) {
+  if (isDirector(employee)) {
+    return (employee.workDirectorTasks());
+  } else {
+    return (employee.workTeacherTasks());
+  }
+}
+
+/*
+// Example
+console.log(executeWork(createEmployee(200)));
+console.log(executeWork(createEmployee(1000)));
+*/
