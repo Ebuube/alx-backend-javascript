@@ -80,3 +80,23 @@ export function executeWork(employee: any) {
 console.log(executeWork(createEmployee(200)));
 console.log(executeWork(createEmployee(1000)));
 */
+
+
+
+// Task 7: String literal types
+
+// A string liter type
+export type Subjects = 'Math' | 'History';
+
+// A function
+export function teachClass(todayClass: Subjects) {
+  if (todayClass === 'Math') {
+    return 'Teching Math';
+  } else if (todayClass === 'History') {
+    return 'Teaching History'
+  }
+}
+
+// Example
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
