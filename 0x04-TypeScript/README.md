@@ -1,5 +1,5 @@
 # TypeScript
 
-```js
+```ts
 typeScript = strongTypingSystem + javaScript;
 ```
