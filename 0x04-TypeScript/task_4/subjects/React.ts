@@ -10,7 +10,7 @@ namespace Subjects {
     }
 
     getAvailableTeacher(): string {
-      if (this.teacher.hasOwnProperty('experienceTeachingReact') && this.teacher.experienceTeachingReact > 0) {
+      if (this.teacher && this.teacher.experienceTeachingReact > 0) {
         return `Available Teacher: ${this.teacher.firstName}`;
       } else {
         return 'No available teacher';
