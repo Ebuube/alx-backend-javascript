@@ -7,7 +7,7 @@ process.stdin.on('readable', () => {
 
   if (data) {
     // Output result to stdout'
-    process.stdout.write(`Your names is: ${data}`);
+    process.stdout.write(`Your name is: ${data}`);
   }
 });
 
