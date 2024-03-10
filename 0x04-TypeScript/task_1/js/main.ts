@@ -58,3 +58,43 @@ const teacher1 : Teacher = {
 
 console.log(printTeacher(teacher1.firstName, teacher1.lastName));
 */
+
+
+// Task 4: Writing a class
+export interface stdClassInterface {
+  firstName: string;
+  lastName: string;
+
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+export interface stdConstructor {
+  constructor(firstName: string, lastName: string): stdClassInterface;
+}
+
+export class StudentClass implements stdClassInterface {
+    firstName: string;
+    lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+};
+
+/*
+// Example
+const myInstance: stdClassInterface = new (StudentClass)('Ebube', 'Onwuta');
+console.log(myInstance);
+console.log(myInstance.workOnHomework());
+console.log(myInstance.displayName());
+*/
