@@ -1,36 +1,49 @@
-// Read a database synchronously
+#!/usr/bin/node
+
 const fs = require('fs');
-const csv = require('csv-parser');
 
 /**
- * Read a CSV file synchronously and computes the result
- * @fileName: The name of the file to read
+ * countStudents - Count the number of student per field
+ * @path: name of database
  */
-function countStudents(fileName) {
-  console.log('In countStudents');  // test
-  const students = [];
+function countStudents(path) {
+  const students = {};
   try {
-    // Parse the CSV data using csv-parser
-    console.log('Trying to parse database');  // test
+    // Read the CSV file synchronously
+    const data = fs.readFileSync(path, 'utf-8');
 
-    fs.createReadStream(fileName, 'utf-8')
-      .pipe(csv({ header: true}))
-      .on('data', (row) => {
-        console.log(`row: ${row['key']}: ${row['value']}`); // test
-        students.push(row)
-      })
-      .on('end', () => {
-        console.log('Done');
-      });
-    console.log(csvData); // test
-    console.log(`Number of records: ${students.length}`);
-  } catch (error) {
-    // File not found
-    if (error.code === 'ENOENT') {
-      throw new Error('Cannot load the database');
+    // Split the data by newline character and filter out empty lines
+    let lines = data.split('\n').filter((line) => line.trim() !== '');
+    lines = lines.slice(1); // Remove first line which is header
+
+    // Summary
+    console.log(`Number of students: ${lines.length}`);
+
+    // Display data
+    lines.forEach((line) => {
+      const entry = line.split(',');
+      const firstName = entry[0];
+      const field = entry[entry.length - 1];
+
+      if (Object.prototype.hasOwnProperty.call(students, field)) {
+        students[field].push(firstName);
+      } else {
+        students[field] = [];
+        students[field].push(firstName);
+      }
+    });
+
+    // Display the students
+    for (const field in students) {
+      if (Object.prototype.hasOwnProperty.call(students, field)) {
+        const size = students[field].length;
+        const members = students[field].join(', ');
+        console.log(`Number of students in ${field}: ${size}. List: ${members}`);
+      }
     }
+  } catch (error) {
+    console.error('Cannot load the database');
   }
-
 }
 
 module.exports = countStudents;
