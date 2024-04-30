@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   countStudents(dbName)
     .then((data) => {
       console.log(data);
