@@ -5,9 +5,11 @@ const fs = require('fs');
  * @path: name of database
  * description: It reads the database asynchronously
  */
-function countStudents(path) {
+function countStudents (path) {
   return new Promise((resolve, reject) => {
     const students = {};
+    const log = [];
+    let info = '';
 
     // Read the CSV file asynchronously
     fs.readFile(path, 'utf8', (err, data) => {
@@ -19,7 +21,9 @@ function countStudents(path) {
           .filter((line) => line.trim() !== '');
 
         // Summary
-        console.log(`Number of students: ${lines.length}`);
+        info = `Number of students: ${lines.length}`;
+        console.log(info);
+        log.push(info);
 
         // Collate members by field
         lines.forEach((line) => {
@@ -40,11 +44,13 @@ function countStudents(path) {
           if (Object.prototype.hasOwnProperty.call(students, field)) {
             const size = students[field].length;
             const members = students[field].join(', ');
-            console.log(`Number of students in ${field}: ${size}. List: ${members}`);
+            info = `Number of students in ${field}: ${size}. List: ${members}`;
+            console.log(info);
+            log.push(info);
           }
         }
         // Resolve the Promise with the result
-        resolve();
+        resolve(log.join('\n'));
       }
     });
   });
