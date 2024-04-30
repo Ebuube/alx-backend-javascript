@@ -50,7 +50,7 @@ function countStudents (path) {
           }
         }
         // Resolve the Promise with the result
-        resolve(log.join('\n'));
+        resolve(log);
       }
     });
   });
