@@ -5,7 +5,7 @@ const countStudents = require('./utility');
 const port = process.env.PORT || 1245;
 const host = 'localhost';
 const app = http.createServer();
-const dbName = process.argv[2] || 'database.csv';
+const dbName = process.argv.length > 2 ? process.argv[2] : '';
 
 // Listen to the request event
 app.on('request', (req, res) => {
