@@ -23,7 +23,11 @@ app.on('request', (req, res) => {
     })
       .catch((err) => {
         res.statusCode = 500;
-        res.end(JSON.stringify(err));
+        let data = ['This is the list of our students'];
+        data.push(err.toString());
+        data = data.join('\n');
+        console.log(`displaying error: ${data}`);
+        res.end(data);
       });
   } else {
     res.statusCode = 404;
