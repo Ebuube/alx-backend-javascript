@@ -1,8 +1,9 @@
 const express = require('express');
 const { countStudents } = require('./server_utility');
+const util = require('util'); // testing
 
 const app = express();
-const dbName = process.argv[2] || 'database.csv';
+const dbName = process.argv[2] || '';
 
 // Routes
 app.get('/', (req, res) => {
@@ -18,8 +19,10 @@ app.get('/students', (req, res) => {
       res.status(200).send(data.join('\n'));
     })
     .catch((error) => {
-      console.log(error);
-      res.status(500).send('Internal Server Error');
+      console.log(util.inspect(error)); //testing
+      let data = [error.message];
+      data.unshift('This is the list of our students');
+      res.status(500).send(data.join('\n'));
     });
 });
 
