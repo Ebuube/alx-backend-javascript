@@ -7,7 +7,7 @@ const fs = require('fs');
  * Return: a promise. It returns an array of firstname of students per field
  * Error: It rejects the promise if file is not accessible.
  */
-function readDatabase (path) {
+function readDatabase(path) {
   return new Promise((resolve, reject) => {
     const students = {};
 
@@ -33,13 +33,6 @@ function readDatabase (path) {
             students[field].push(firstName);
           }
         });
-        // Display the students
-        for (const field in students) {
-          if (Object.prototype.hasOwnProperty.call(students, field)) {
-            const size = students[field].length;
-            const members = students[field].join(', ');
-          }
-        }
         // Resolve the Promise with the result
         resolve(students);
       }
@@ -48,5 +41,5 @@ function readDatabase (path) {
 }
 
 module.exports = {
-  readDatabase
+  readDatabase,
 };
