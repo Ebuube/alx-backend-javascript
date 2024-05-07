@@ -1,4 +1,4 @@
-const Utils = require('./util');
+const Utils = require('./utils');
 
 /**
  * Sends a payment request to the API and logs the total.

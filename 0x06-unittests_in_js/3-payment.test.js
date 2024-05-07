@@ -3,7 +3,7 @@
 const sinon = require('sinon');
 const assert = require('assert');
 const sendPaymentRequestToApi = require('./3-payment');
-const Utils = require('./util');
+const Utils = require('./utils');
 console.log(`sinon is: ${sinon}`);  // testing
 
 describe('sendPaymentRequestToApi', function() {
