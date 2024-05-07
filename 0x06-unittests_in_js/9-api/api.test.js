@@ -1,5 +1,4 @@
 const request = require('request');
-const { app, server } = require('./api');
 const { expect } = require('chai');
 
 const port = 7865;
@@ -31,13 +30,6 @@ describe('Test suite for /cart page', function() {
   it('Body -> :id is a not', function(done) {
     request(`${baseUrl}/cart/abc`, function(error, response, body) {
       expect(body).to.equal('Invalid ID. ID must be a number.');
-      done();
-    });
-  });
-
-  after(function(done) {
-    server.close(() => {
-      console.log('Express server closed');
       done();
     });
   });
