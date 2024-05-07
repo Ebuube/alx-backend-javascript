@@ -1,33 +1,29 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
+const request = require('request');
 const app = require('./api');
+const { expect } = require('chai');
 
-chai.use(chaiHttp);
-const expect = chai.expect;
+const port = 7865;
+const baseUrl = `http://localhost:${port}`;
+
 describe('Test suite for index page', function() {
-  // setUp
-  before((done) => {
-    const port = 7865;
-    // Start the Express server
-    app.listen(port, () => {
-      console.log(`API is listening on http://localhost:${port}`);
+  it('Status code', function(done) {
+    request(`${baseUrl}`, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });
 
-  after((done) => {
-    // Close the Express server
-    app.close(() => {
-      console.log('Express server closed');
+  it('Body', function(done) {
+    request(`${baseUrl}`, function(error, response, body) {
+      expect(body).to.equal('Welcome to the payment system');
       done();
     });
   });
 
-  it('Status code', function() {
-    chai.request(app)
-      .get('/')
-      .end((error, response) => {
-        expect(response).to.have.status(200);
-      });
+  it('Other routes', function(done) {
+    request(`${baseUrl}/other-routes`, function(error, response, body) {
+      expect(response.statusCode).to.equal(404);
+      done();
+    });
   });
 });
