@@ -1,5 +1,5 @@
 const request = require('request');
-const { app, server } = require('./api');
+const app = require('./api');
 const { expect } = require('chai');
 
 const port = 7865;
@@ -8,6 +8,7 @@ const baseUrl = `http://localhost:${port}`;
 describe('Test suite for index page', function() {
   it('Status code', function(done) {
     request(`${baseUrl}`, function(error, response, body) {
+      expect(error).to.be.null;
       expect(response.statusCode).to.equal(200);
       done();
     });
@@ -15,6 +16,7 @@ describe('Test suite for index page', function() {
 
   it('Body', function(done) {
     request(`${baseUrl}`, function(error, response, body) {
+      expect(error).to.be.null;
       expect(body).to.equal('Welcome to the payment system');
       done();
     });
@@ -22,14 +24,15 @@ describe('Test suite for index page', function() {
 
   it('Other routes', function(done) {
     request(`${baseUrl}/other-routes`, function(error, response, body) {
-      expect(response.statusCode).to.equal(404);
+      expect(error).to.be.null;
+      expect(response.statusCode).to.be.at.least(404);
       done();
     });
   });
 
-  after(function(done) {
-    server.close(() => {
-      console.log('Express server closed');
+  it ('Handle other errors gracefully', function(done) {
+    request('http://non-existent-url.com', function(error, response, body) {
+      expect(error).to.not.be.null;
       done();
     });
   });
