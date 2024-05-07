@@ -1,5 +1,4 @@
 const request = require('request');
-const { app, server } = require('./api');
 const { expect } = require('chai');
 
 const port = 7865;
@@ -31,13 +30,6 @@ describe('Test suite for /cart page', function() {
   it('Status code -> /available_payments', function(done) {
     request(`${baseUrl}/available_payments`, function(error, response, body) {
       expect(response.statusCode).to.equal(200);
-      done();
-    });
-  });
-
-  after(function(done) {
-    server.close(() => {
-      console.log('Express server closed');
       done();
     });
   });
