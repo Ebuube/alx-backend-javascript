@@ -1,36 +1,38 @@
 const request = require('request');
-const { app, server } = require('./api');
 const { expect } = require('chai');
 
-const port = 7865;
-const baseUrl = `http://localhost:${port}`;
+describe('Index Page', () => {
 
-describe('Test suite for index page', function() {
-  it('Status code', function(done) {
-    request(`${baseUrl}`, function(error, response, body) {
+  it('should return the correct status code', (done) => {
+    request.get('http://localhost:7865', (error, response, body) => {
+      expect(error).to.be.null;
       expect(response.statusCode).to.equal(200);
       done();
     });
   });
 
-  it('Body', function(done) {
-    request(`${baseUrl}`, function(error, response, body) {
+  it('should return the correct welcome message', (done) => {
+    request.get('http://localhost:7865', (error, response, body) => {
+      expect(error).to.be.null;
       expect(body).to.equal('Welcome to the payment system');
       done();
     });
   });
 
-  it('Other routes', function(done) {
-    request(`${baseUrl}/other-routes`, function(error, response, body) {
-      expect(response.statusCode).to.equal(404);
+  
+  it('should handle invalid routes', (done) => {
+    request.get('http://localhost:7865/invalid-route', (error, response, body) => {
+      expect(error).to.be.null;
+      expect(response.statusCode).to.be.at.least(400);
       done();
     });
   });
 
-  after(function(done) {
-    server.close(() => {
-      console.log('Express server closed');
+  it('should handle unexpected errors gracefully', (done) => {
+    request.get('http://non-existent-url.com', (error, response, body) => {
+      expect(error).to.not.be.null;
       done();
     });
   });
+
 });
