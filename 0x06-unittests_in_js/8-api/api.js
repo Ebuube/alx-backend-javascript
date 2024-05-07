@@ -8,7 +8,7 @@ app.get('/', (request, response) => {
 });
 
 const server = app.listen(port, () => {
-  console.log(`API is listening on localhost port ${port}`);
+  console.log(`API available on localhost port ${port}`);
 });
 
 module.exports = {
