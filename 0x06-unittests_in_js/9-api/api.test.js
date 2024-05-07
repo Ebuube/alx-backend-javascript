@@ -1,0 +1,30 @@
+const request = require('request');
+const { app, server } = require('./api');
+const { expect } = require('chai');
+
+const port = 7865;
+const baseUrl = `http://localhost:${port}`;
+
+describe('Test suite for /cart page', function() {
+  // Test cases
+  it('Status code-> :id is a number', function(done) {
+    request(`${baseUrl}/cart/123`, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('Body-> :id is a number', function(done) {
+    request(`${baseUrl}/cart/123`, function(error, response, body) {
+      expect(body).to.equal('Payment methods for cart 123');
+      done();
+    });
+  });
+
+  after(function(done) {
+    server.close(() => {
+      console.log('Express server closed');
+      done();
+    });
+  });
+});
