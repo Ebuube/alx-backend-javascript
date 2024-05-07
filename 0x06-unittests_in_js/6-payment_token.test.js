@@ -1,20 +1,17 @@
 // Asynchronous test
-const assert = require('assert');
+const chai = require('chai');
 const getPaymentTokenFromAPI = require('./6-payment_token');
+const util = require('util');
 
-
+const expect = chai.expect;
 describe('getPaymentTokenFromAPI test suite', function() {
   it('Successful API response', function() {
     // Call the asynchronous function under test
-    getPaymentTokenFromAPI(true)
+    const strictResponse = { data: 'Successful response from the API' };
+    return getPaymentTokenFromAPI(true)
       .then(response => {
         // Ensure response is correct
-        assert.deepStrictEqual(response, { data: 'Successful response from the API' });
-        done();
-      })
-      .catch(error => {
-        // If an error occurs, fail the test
-        done(error);
+        expect(response).to.deep.equal(strictResponse);
       });
   });
 });
