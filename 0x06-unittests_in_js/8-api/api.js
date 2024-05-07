@@ -7,7 +7,11 @@ app.get('/', (request, response) => {
   response.send('Welcome to the payment system');
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`API is listening on localhost port ${port}`);
 });
-module.exports = app;
+
+module.exports = {
+  app: app,
+  server: server
+};
