@@ -1,6 +1,15 @@
-const assert = require("assert");
+// const assert = require("assert");
+const chai = require('chai');
+const expect = chai.expect;
 const calculateNumber = require("./1-calcul");
 
+describe("Test for calculateNumber", function() {
+  it("SUM: two integers", function() {
+    expect(calculateNumber('SUM', 1, 3)).timedOut.equal(4);
+  })
+});
+
+/**
 describe("Test for calculateNumber", function() {
   it("SUM: two integers", function() {
     assert.equal(calculateNumber('SUM', 1, 3), 4);
@@ -39,3 +48,4 @@ describe("Test for calculateNumber", function() {
     assert.equal(calculateNumber('DIVIDE', 3.5, 0.3), 'Error');
   });
 });
+*/

@@ -1,8 +1,9 @@
 /**
  * Calculate the sum of rounded values of two integers.
+ * @param {string} type operation to execute
  * @param {number} a The first integer.
  * @param {number} b The second integer
- * @returns {number} The sum of a and b.
+ * @returns {(number|string)} The sum of a and b.
  */
 function calculateNumber(type, a, b) {
   types = ['SUM', 'SUBTRACT', 'DIVIDE'];
