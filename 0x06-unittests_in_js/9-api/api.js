@@ -11,7 +11,7 @@ app.get('/', (request, response) => {
 app.get('/cart/:id', (request, response) => {
   const id = request.params.id;
   if (!/^\d+$/.test(id)) {
-    return response.status(400).send('Invlaid ID. ID must be a number.');
+    return response.status(404).send('Invalid ID. ID must be a number.');
   }
   response.send(`Payment methods for cart ${id}`);
 });
