@@ -29,4 +29,7 @@ describe("Test for calculateNumber", function() {
   it("negative (float and float) with higher approx", function() {
     assert.equal(calculateNumber(-1.5, -3.7), -5);
   });
+  it("zeros", function() {
+    assert.equal(calculateNumber(0, 0), 0);
+  });
 });
