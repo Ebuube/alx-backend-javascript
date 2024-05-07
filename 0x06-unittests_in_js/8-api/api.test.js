@@ -26,11 +26,4 @@ describe('Test suite for index page', function() {
       done();
     });
   });
-
-  after(function(done) {
-    server.close(() => {
-      console.log('Express server closed');
-      done();
-    });
-  });
 });
