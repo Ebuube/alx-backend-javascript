@@ -3,7 +3,8 @@
 const sinon = require('sinon');
 const assert = require('assert');
 const sendPaymentRequestToApi = require('./3-payment');
-const Utils = require('./utils');
+const Utils = require('./util');
+console.log(`sinon is: ${sinon}`);  // testing
 
 describe('sendPaymentRequestToApi', function() {
   it('should call Utils.calculateNumber with correct arguments', function() {
