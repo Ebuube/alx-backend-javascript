@@ -9,12 +9,6 @@ describe('Test suite for index page', function() {
   it('Status code', function(done) {
     request(`${baseUrl}`, function(error, response, body) {
       expect(response.statusCode).to.equal(200);
-      done();
-    });
-  });
-
-  it('Body', function(done) {
-    request(`${baseUrl}`, function(error, response, body) {
       expect(body).to.equal('Welcome to the payment system');
       done();
     });
